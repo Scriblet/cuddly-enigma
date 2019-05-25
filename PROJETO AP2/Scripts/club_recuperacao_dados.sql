@@ -45,3 +45,12 @@ ORDER BY nome ASC;
 SELECT count(*) AS 'Associados por Cidade', cidade, bairro
 FROM associado_endereco
 GROUP BY cidade;
+
+SELECT associado.nome, times.nome
+FROM associado, times
+WHERE associado.times_id = times.cod_time;
+
+SELECT associado.nome, times.nome
+FROM associado
+INNER JOIN times
+ON associado.times_id = times.cod_time;
