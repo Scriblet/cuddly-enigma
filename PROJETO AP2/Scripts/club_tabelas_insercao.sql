@@ -4,7 +4,7 @@ VALUES
 (1, "Dark Wolves",3),
 (2, "Elves of the Forest", 4);
 
-INSERT INTO associado -- NAO FUNCIONA
+INSERT INTO associado 
 (cpf, nome, sobrenome, data_nascimento, sexo, email, data_de_associacao, times_id)
 VALUES
 (20, "Jose", "Silva", CURRENT_DATE, 'M', "josesilva@email.com", CURRENT_TIMESTAMP, 1),
@@ -16,19 +16,19 @@ VALUES
 (20, 55020605, "PE", "Recife", "Guararapes", "Madre de Mignola", 25),
 (21, 55020201, "PE", "Caruaru", "Cedro", "Cinquenta", 35);
 
-INSERT INTO associado_matricula_treino -- NAO FUNCIONA
+INSERT INTO associado_matricula_treino 
 (cpf_associado_rel, codigo_turma, data_matricula)
 VALUES
 (1, 22, CURRENT_DATE),
 (2, 23, CURRENT_DATE);
 
-INSERT INTO associado_telefone -- NAO FUNCIONA
+INSERT INTO associado_telefone 
 (cpf_associado, telefone)
 VALUES
 (20, 819224913),
 (21, 819242151);
 
-INSERT INTO associados_part_camp -- ASSOCIADOS QUE ESTAO EM UM CAMPEONATO - NAO FUNCIONA
+INSERT INTO associados_part_camp -- ASSOCIADOS QUE ESTAO EM UM CAMPEONATO 
 (cpf_asso_camp, codigo_camp)
 VALUES
 (20, 3),
@@ -70,13 +70,13 @@ VALUES
 (1, "Gonzales", "Esperanto", "Volei"),
 (2, "Maria", "Azevedo", "Futsal");
 
-INSERT INTO tecnico_endereco -- NAO FUNCIONA
+INSERT INTO tecnico_endereco 
 (registro_tecnico_end, cep, estado, cidade, bairro, rua, numero)
 VALUES
 (1, 55029314, "PE", "Recife", "Guarrarapes", "Cinquenta e Dois", 764),
 (2, 89584253, "PE", "Caruaru", "Rendeiras", "Noventa e Quatro", 984);
 
-INSERT INTO tecnico_telefone -- NAO FUNCIONA
+INSERT INTO tecnico_telefone 
 (registro_tecnico_tel, telefone)
 VALUES 
 (1, 8192811515),
@@ -87,5 +87,3 @@ INSERT INTO treino
 VALUES
 (1, CURRENT_DATE, "Tarde", 1, 2),
 (2, CURRENT_DATE, "Manha", 2, 1);
-
-
