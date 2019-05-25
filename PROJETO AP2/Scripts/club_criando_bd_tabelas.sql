@@ -18,7 +18,7 @@ CREATE TABLE times(
 );
 
 CREATE TABLE associado (
-	cpf INT NOT NULL,
+	cpf INT NOT NULL, -- TIPO STRING
     nome VARCHAR(15) NOT NULL,
     sobrenome VARCHAR(20) NOT NULL,
     data_nascimento DATE NOT NULL,
@@ -35,7 +35,7 @@ CREATE TABLE associado (
 );
     
 CREATE TABLE associado_telefone (
-	cpf_associado INT NOT NULL,
+	cpf_associado INT NOT NULL, -- TIPO STRING
     telefone INT,
     
     CONSTRAINT pk_associado_telefone 
