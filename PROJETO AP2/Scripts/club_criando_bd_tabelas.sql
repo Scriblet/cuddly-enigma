@@ -19,7 +19,7 @@ CREATE TABLE times(
 
 CREATE TABLE associado (
     id INT NOT NULL AUTO_INCREMENT	
-    cpf VARCHAR(100) NOT NULL, -- TIPO STRING
+    cpf VARCHAR(11) NOT NULL UNIQUE,
     nome VARCHAR(15) NOT NULL,
     sobrenome VARCHAR(20) NOT NULL,
     data_nascimento DATE NOT NULL,
@@ -36,7 +36,7 @@ CREATE TABLE associado (
 );
     
 CREATE TABLE associado_telefone (
-    cpf_associado VARCHAR(50) NULL, -- TIPO STRING
+    cpf_associado VARCHAR(11) NOT NULL UNIQUE, 
     telefone VARCHAR(30),
     
     CONSTRAINT pk_associado_telefone 
@@ -48,7 +48,7 @@ CREATE TABLE associado_telefone (
 );
 
 CREATE TABLE associado_endereco (
-    end_cpf_associado VARCHAR(50) NOT NULL,
+    end_cpf_associado VARCHAR(11) NOT NULL UNIQUE,
     cep VARCHAR(30),
     estado VARCHAR(50) NOT NULL,
     cidade VARCHAR(30) NOT NULL,
@@ -76,7 +76,7 @@ CREATE TABLE tecnico (
 );
 
 CREATE TABLE tecnico_telefone (
-    registro_tecnico_tel VARCHAR(30) NOT NULL,
+    registro_tecnico_tel INT NOT NULL,
     telefone VARCHAR(50),
     
     CONSTRAINT pk_tecnico_telefone 
@@ -89,10 +89,10 @@ CREATE TABLE tecnico_telefone (
 
 CREATE TABLE tecnico_endereco (
     registro_tecnico_end INT NOT NULL,
-    cep VARCHAR(50),
-    estado VARCHAR(50) NOT NULL,
+    cep VARCHAR(15) UNIQUE,
+    estado VARCHAR(30) NOT NULL,
     cidade VARCHAR(30) NOT NULL,
-    bairro VARCHAR(50) NOT NULL,
+    bairro VARCHAR(30) NOT NULL,
     rua VARCHAR(30) NOT NULL,
     numero SMALLINT NOT NULL,
     
@@ -115,9 +115,9 @@ CREATE TABLE esporte(
 );
 
 CREATE TABLE treino (
-	codigo INT AUTO_INCREMENT,
+    codigo INT AUTO_INCREMENT,
     dia DATE NOT NULL,
-    turno VARCHAR(50),
+    turno VARCHAR(15),
     tecnico_id INT NOT NULL,
     esporte_id INT NOT NULL,
     
@@ -135,7 +135,7 @@ CREATE TABLE treino (
 );
 
 CREATE TABLE associado_matricula_treino (
-    cpf_associado_rel VARCHAR(50) NOT NULL,
+    cpf_associado_rel VARCHAR(11) NOT NULL UNIQUE,
     codigo_turma INT NOT NULL,
     data_matricula TIMESTAMP,
     
@@ -149,7 +149,7 @@ CREATE TABLE associado_matricula_treino (
 );
 
 CREATE TABLE escala(
-	esc_cod INT AUTO_INCREMENT,
+    esc_cod INT NOT NULL AUTO_INCREMENT,
     horas TIME NOT NULL,
     
     CONSTRAINT pk_escala
@@ -157,7 +157,7 @@ CREATE TABLE escala(
 );
 
 CREATE TABLE escala_dias_ocupados(
-	cod_esca INT NOT NULL,
+    cod_esca INT NOT NULL,
     dias_ocup INT NOT NULL,
     
     CONSTRAINT pk_escala_ocup
@@ -169,7 +169,7 @@ CREATE TABLE escala_dias_ocupados(
 );
 
 CREATE TABLE escala_dias_livres(
-	esc_cod_livres INT NOT NULL,
+    esc_cod_livres INT NOT NULL,
     dias_livres INT NOT NULL,
     
     CONSTRAINT pk_escala_liv
@@ -181,7 +181,7 @@ CREATE TABLE escala_dias_livres(
 );
 
 CREATE TABLE campeonato (
-	cod_camp INT AUTO_INCREMENT,
+    cod_camp INT AUTO_INCREMENT,
     edicao SMALLINT,
     data_camp DATE,
     
@@ -190,7 +190,7 @@ CREATE TABLE campeonato (
 );
 
 CREATE TABLE associados_part_camp (
-    cpf_asso_camp VARCHAR(30) NOT NULL,
+    cpf_asso_camp VARCHAR(11) NOT NULL UNIQUE,
     codigo_camp INT NOT NULL,
     
     CONSTRAINT pk_asso_campe
