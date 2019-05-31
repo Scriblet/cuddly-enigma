@@ -5,7 +5,7 @@ DEFAULT COLLATE UTF8_GENERAL_CI;
 USE club_esportivo;
 
 CREATE TABLE times(
-	cod_time INT AUTO_INCREMENT,
+    cod_time INT AUTO_INCREMENT,
     nome VARCHAR(50) NOT NULL,
     camp_id INT NOT NULL,
     
@@ -18,7 +18,8 @@ CREATE TABLE times(
 );
 
 CREATE TABLE associado (
-	cpf INT NOT NULL, -- TIPO STRING
+    id INT NOT NULL AUTO_INCREMENT	
+    cpf VARCHAR(100) NOT NULL, -- TIPO STRING
     nome VARCHAR(15) NOT NULL,
     sobrenome VARCHAR(20) NOT NULL,
     data_nascimento DATE NOT NULL,
@@ -35,8 +36,8 @@ CREATE TABLE associado (
 );
     
 CREATE TABLE associado_telefone (
-	cpf_associado INT NOT NULL, -- TIPO STRING
-    telefone INT,
+    cpf_associado VARCHAR(50) NULL, -- TIPO STRING
+    telefone VARCHAR(30),
     
     CONSTRAINT pk_associado_telefone 
     PRIMARY KEY(cpf_associado, telefone),
@@ -47,8 +48,8 @@ CREATE TABLE associado_telefone (
 );
 
 CREATE TABLE associado_endereco (
-	end_cpf_associado INT NOT NULL,
-    cep MEDIUMINT,
+    end_cpf_associado VARCHAR(50) NOT NULL,
+    cep VARCHAR(30),
     estado VARCHAR(50) NOT NULL,
     cidade VARCHAR(30) NOT NULL,
     bairro VARCHAR(50) NOT NULL,
@@ -65,18 +66,18 @@ CREATE TABLE associado_endereco (
 );
 
 CREATE TABLE tecnico (
-	registro INT NOT NULL,
+    registro INT NOT NULL,
     nome VARCHAR(15),
     sobrenome VARCHAR(30),
     epecializacao VARCHAR(50) NOT NULL,
     
-	CONSTRAINT pk_tec 
+    CONSTRAINT pk_tec 
     PRIMARY KEY(registro)
 );
 
 CREATE TABLE tecnico_telefone (
-	registro_tecnico_tel INT NOT NULL,
-    telefone INT,
+    registro_tecnico_tel VARCHAR(30) NOT NULL,
+    telefone VARCHAR(50),
     
     CONSTRAINT pk_tecnico_telefone 
     PRIMARY KEY(registro_tecnico_tel, telefone),
@@ -87,14 +88,13 @@ CREATE TABLE tecnico_telefone (
 );
 
 CREATE TABLE tecnico_endereco (
-	registro_tecnico_end INT NOT NULL,
-    cep MEDIUMINT,
+    registro_tecnico_end INT NOT NULL,
+    cep VARCHAR(50),
     estado VARCHAR(50) NOT NULL,
     cidade VARCHAR(30) NOT NULL,
     bairro VARCHAR(50) NOT NULL,
     rua VARCHAR(30) NOT NULL,
     numero SMALLINT NOT NULL,
-    
     
     CONSTRAINT pk_end_tecnico
     PRIMARY KEY(registro_tecnico_end),
@@ -105,7 +105,7 @@ CREATE TABLE tecnico_endereco (
 );
 
 CREATE TABLE esporte(
-	esporte_cod INT AUTO_INCREMENT,
+    esporte_cod INT AUTO_INCREMENT,
     nome VARCHAR(30) NOT NULL,
     qtd_pessoas MEDIUMINT NOT NULL,
     
@@ -135,7 +135,7 @@ CREATE TABLE treino (
 );
 
 CREATE TABLE associado_matricula_treino (
-	cpf_associado_rel INT NOT NULL,
+    cpf_associado_rel VARCHAR(50) NOT NULL,
     codigo_turma INT NOT NULL,
     data_matricula TIMESTAMP,
     
@@ -190,7 +190,7 @@ CREATE TABLE campeonato (
 );
 
 CREATE TABLE associados_part_camp (
-	cpf_asso_camp INT NOT NULL,
+    cpf_asso_camp VARCHAR(30) NOT NULL,
     codigo_camp INT NOT NULL,
     
     CONSTRAINT pk_asso_campe
@@ -203,11 +203,11 @@ CREATE TABLE associados_part_camp (
 );
 
 CREATE TABLE jogos (
-	cod_camp_id INT NOT NULL,
+    cod_camp_id INT NOT NULL,
     data_camp DATE NOT NULL,
     hora TIMESTAMP,
     
-	CONSTRAINT pk_jogos
+    CONSTRAINT pk_jogos
     PRIMARY KEY(cod_camp_id, hora),
     
     CONSTRAINT fk_camp
