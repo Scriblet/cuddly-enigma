@@ -7,8 +7,8 @@ VALUES
 INSERT INTO associado 
 (cpf, nome, sobrenome, data_nascimento, sexo, email, data_de_associacao, times_id)
 VALUES
-(20, "Jose", "Silva", CURRENT_DATE, 'M', "josesilva@email.com", CURRENT_TIMESTAMP, 1),
-(21, "Andre", "Alves", CURRENT_DATE, 'M', "andresilva@email.com", CURRENT_TIMESTAMP, 2);
+('89456423412', "Jose", "Silva", CURRENT_DATE, 'M', "josesilva@email.com", CURRENT_TIMESTAMP, 1),
+('98412415041', "Andre", "Alves", CURRENT_DATE, 'M', "andresilva@email.com", CURRENT_TIMESTAMP, 2);
 
 INSERT INTO associado_endereco -- NAO FUNCIONA 
 (end_cpf_associado, cep, estado, cidade, bairro, rua, numero)

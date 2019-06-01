@@ -1,6 +1,6 @@
 CREATE DATABASE club_esportivo
-DEFAULT CHARACTER SET utf8
-DEFAULT COLLATE UTF8_GENERAL_CI;
+DEFAULT CHARACTER SET utf8mb4
+DEFAULT COLLATE utf8mb4_bin;
 
 USE club_esportivo;
 
@@ -11,7 +11,7 @@ CREATE TABLE campeonato (
     
 	CONSTRAINT pk_cod_camp 
     PRIMARY KEY(cod_camp)
-);
+) DEFAULT CHARSET = utf8mb4;
 
 CREATE TABLE times(
     cod_time INT AUTO_INCREMENT,
@@ -24,7 +24,7 @@ CREATE TABLE times(
     CONSTRAINT fk_camp_times
     FOREIGN KEY(camp_id) 
     REFERENCES campeonato(cod_camp)
-);
+) DEFAULT CHARSET = utf8mb4;
 
 CREATE TABLE associado (
     id INT NOT NULL AUTO_INCREMENT,	
@@ -32,7 +32,7 @@ CREATE TABLE associado (
     nome VARCHAR(15) NOT NULL,
     sobrenome VARCHAR(20) NOT NULL,
     data_nascimento DATE NOT NULL,
-    sexo ENUM('M','F'),
+    sexo ENUM('M', 'F'),
     email VARCHAR(30),
     data_de_associacao TIMESTAMP,
     times_id INT NOT NULL,
@@ -42,7 +42,7 @@ CREATE TABLE associado (
     CONSTRAINT fk_times_asso
     FOREIGN KEY(times_id) 
     REFERENCES times(cod_time)
-);
+) DEFAULT CHARSET = utf8mb4;
     
 CREATE TABLE associado_telefone (
 	id INT NOT NULL,
@@ -54,7 +54,7 @@ CREATE TABLE associado_telefone (
     CONSTRAINT fk_associado_telefone 
     FOREIGN KEY(id) 
     REFERENCES associado(id)
-);
+) DEFAULT CHARSET = utf8mb4;
 
 CREATE TABLE associado_endereco (
     id INT NOT NULL,
@@ -72,7 +72,7 @@ CREATE TABLE associado_endereco (
     FOREIGN KEY(id) 
     REFERENCES associado(id)
     
-);
+) DEFAULT CHARSET = utf8mb4;
 
 CREATE TABLE tecnico (
     registro INT NOT NULL,
@@ -82,7 +82,7 @@ CREATE TABLE tecnico (
     
     CONSTRAINT pk_tec 
     PRIMARY KEY(registro)
-);
+) DEFAULT CHARSET = utf8mb4;
 
 CREATE TABLE tecnico_telefone (
     registro_tecnico_tel INT NOT NULL,
@@ -94,7 +94,7 @@ CREATE TABLE tecnico_telefone (
     CONSTRAINT fk_tecnico_telefone 
     FOREIGN KEY(registro_tecnico_tel) 
     REFERENCES tecnico(registro)
-);
+) DEFAULT CHARSET = utf8mb4;
 
 CREATE TABLE tecnico_endereco (
     registro_tecnico_end INT NOT NULL,
@@ -111,7 +111,7 @@ CREATE TABLE tecnico_endereco (
     CONSTRAINT fk_end_tecnico
     FOREIGN KEY(registro_tecnico_end) 
     REFERENCES tecnico(registro)
-);
+) DEFAULT CHARSET = utf8mb4;
 
 CREATE TABLE esporte(
     esporte_cod INT AUTO_INCREMENT,
@@ -121,7 +121,7 @@ CREATE TABLE esporte(
     CONSTRAINT pk_esp_id 
     PRIMARY KEY (esporte_cod)
     
-);
+) DEFAULT CHARSET = utf8mb4;
 
 CREATE TABLE treino (
     codigo INT AUTO_INCREMENT,
@@ -141,7 +141,7 @@ CREATE TABLE treino (
     FOREIGN KEY(esporte_id) 
     REFERENCES esporte(esporte_cod)
 
-);
+) DEFAULT CHARSET = utf8mb4;
 
 CREATE TABLE associado_matricula_treino (
 	id INT NOT NULL,
@@ -155,7 +155,7 @@ CREATE TABLE associado_matricula_treino (
     FOREIGN KEY(id) 
     REFERENCES treino(codigo)
 
-);
+) DEFAULT CHARSET = utf8mb4;
 
 CREATE TABLE escala(
     esc_cod INT NOT NULL AUTO_INCREMENT,
@@ -163,7 +163,7 @@ CREATE TABLE escala(
     
     CONSTRAINT pk_escala
     PRIMARY KEY (esc_cod)
-);
+) DEFAULT CHARSET = utf8mb4;
 
 CREATE TABLE escala_dias_ocupados(
     cod_esca INT NOT NULL,
@@ -175,7 +175,7 @@ CREATE TABLE escala_dias_ocupados(
     CONSTRAINT fk_escala_ocp 
     FOREIGN KEY(cod_esca)
     REFERENCES escala(esc_cod)
-);
+) DEFAULT CHARSET = utf8mb4;
 
 CREATE TABLE escala_dias_livres(
     esc_cod_livres INT NOT NULL,
@@ -187,12 +187,12 @@ CREATE TABLE escala_dias_livres(
     CONSTRAINT fk_escala_li 
     FOREIGN KEY(esc_cod_livres)
     REFERENCES escala(esc_cod)
-);
+) DEFAULT CHARSET = utf8mb4;
 
 
 
 CREATE TABLE associados_part_camp (
-    cpf_asso_camp VARCHAR(11) NOT NULL UNIQUE,
+    cpf_asso_camp VARCHAR(11) NOT NULL,
     codigo_camp INT NOT NULL,
     
     CONSTRAINT pk_asso_campe
@@ -202,7 +202,7 @@ CREATE TABLE associados_part_camp (
     FOREIGN KEY(cpf_asso_camp) 
     REFERENCES associado(cpf)
 
-);
+) DEFAULT CHARSET = utf8mb4;
 
 CREATE TABLE jogos (
     cod_camp_id INT NOT NULL,
@@ -215,7 +215,7 @@ CREATE TABLE jogos (
     CONSTRAINT fk_camp
     FOREIGN KEY(cod_camp_id) 
     REFERENCES campeonato(cod_camp)
-);
+) DEFAULT CHARSET = utf8mb4;
 
 
 
