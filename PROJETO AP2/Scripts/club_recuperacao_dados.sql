@@ -1,10 +1,10 @@
 SELECT * FROM treino;
 
-SELECT * FROM associado;
+SELECT * FROM associados;
 
-SELECT * FROM tecnico_endereco;
+SELECT * FROM esporte;
 
-SELECT * FROM tecnico_telefone;
+SELECT * FROM tecnico;
 
 SELECT nome
 AS 'Nome do Tecnico' 

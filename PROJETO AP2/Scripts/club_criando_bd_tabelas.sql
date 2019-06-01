@@ -190,17 +190,16 @@ CREATE TABLE escala_dias_livres(
 ) DEFAULT CHARSET = utf8mb4;
 
 
-
 CREATE TABLE associados_part_camp (
-    cpf_asso_camp VARCHAR(11) NOT NULL,
+    id INT NOT NULL,
     codigo_camp INT NOT NULL,
     
     CONSTRAINT pk_asso_campe
-    PRIMARY KEY(cpf_asso_camp, codigo_camp),
+    PRIMARY KEY(id, codigo_camp),
     
     CONSTRAINT fk_asso_camp
-    FOREIGN KEY(cpf_asso_camp) 
-    REFERENCES associado(cpf)
+    FOREIGN KEY(id) 
+    REFERENCES associado(id)
 
 ) DEFAULT CHARSET = utf8mb4;
 
