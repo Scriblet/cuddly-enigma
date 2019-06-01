@@ -4,6 +4,15 @@ DEFAULT COLLATE UTF8_GENERAL_CI;
 
 USE club_esportivo;
 
+CREATE TABLE campeonato (
+    cod_camp INT AUTO_INCREMENT,
+    edicao SMALLINT,
+    data_camp DATE,
+    
+	CONSTRAINT pk_cod_camp 
+    PRIMARY KEY(cod_camp)
+);
+
 CREATE TABLE times(
     cod_time INT AUTO_INCREMENT,
     nome VARCHAR(50) NOT NULL,
@@ -18,7 +27,7 @@ CREATE TABLE times(
 );
 
 CREATE TABLE associado (
-    id INT NOT NULL AUTO_INCREMENT	
+    id INT NOT NULL AUTO_INCREMENT,	
     cpf VARCHAR(11) NOT NULL UNIQUE,
     nome VARCHAR(15) NOT NULL,
     sobrenome VARCHAR(20) NOT NULL,
@@ -28,7 +37,7 @@ CREATE TABLE associado (
     data_de_associacao TIMESTAMP,
     times_id INT NOT NULL,
     
-    CONSTRAINT pk_cpf PRIMARY KEY(cpf),
+    CONSTRAINT pk_id PRIMARY KEY(id),
     
     CONSTRAINT fk_times_asso
     FOREIGN KEY(times_id) 
@@ -36,19 +45,19 @@ CREATE TABLE associado (
 );
     
 CREATE TABLE associado_telefone (
-    cpf_associado VARCHAR(11) NOT NULL UNIQUE, 
+	id INT NOT NULL,
     telefone VARCHAR(30),
     
     CONSTRAINT pk_associado_telefone 
-    PRIMARY KEY(cpf_associado, telefone),
+    PRIMARY KEY(id, telefone),
     
     CONSTRAINT fk_associado_telefone 
-    FOREIGN KEY(cpf_associado) 
-    REFERENCES associado(cpf)
+    FOREIGN KEY(id) 
+    REFERENCES associado(id)
 );
 
 CREATE TABLE associado_endereco (
-    end_cpf_associado VARCHAR(11) NOT NULL UNIQUE,
+    id INT NOT NULL,
     cep VARCHAR(30),
     estado VARCHAR(50) NOT NULL,
     cidade VARCHAR(30) NOT NULL,
@@ -57,11 +66,11 @@ CREATE TABLE associado_endereco (
     numero SMALLINT NOT NULL,
     
     CONSTRAINT pk_end_associado
-    PRIMARY KEY(end_cpf_associado),
+    PRIMARY KEY(id),
     
     CONSTRAINT fk_end_associado
-    FOREIGN KEY(end_cpf_associado) 
-    REFERENCES associado(cpf)
+    FOREIGN KEY(id) 
+    REFERENCES associado(id)
     
 );
 
@@ -135,15 +144,15 @@ CREATE TABLE treino (
 );
 
 CREATE TABLE associado_matricula_treino (
-    cpf_associado_rel VARCHAR(11) NOT NULL UNIQUE,
+	id INT NOT NULL,
     codigo_turma INT NOT NULL,
     data_matricula TIMESTAMP,
     
     CONSTRAINT pk_cpf_associado_matricula 
-    PRIMARY KEY(cpf_associado_rel, codigo_turma),
+    PRIMARY KEY(id, codigo_turma),
     
-    CONSTRAINT fk_cod_turma 
-    FOREIGN KEY(cpf_associado_rel) 
+    CONSTRAINT fk_associado_matricula_treino
+    FOREIGN KEY(id) 
     REFERENCES treino(codigo)
 
 );
@@ -180,14 +189,7 @@ CREATE TABLE escala_dias_livres(
     REFERENCES escala(esc_cod)
 );
 
-CREATE TABLE campeonato (
-    cod_camp INT AUTO_INCREMENT,
-    edicao SMALLINT,
-    data_camp DATE,
-    
-	CONSTRAINT pk_cod_camp 
-    PRIMARY KEY(cod_camp)
-);
+
 
 CREATE TABLE associados_part_camp (
     cpf_asso_camp VARCHAR(11) NOT NULL UNIQUE,
