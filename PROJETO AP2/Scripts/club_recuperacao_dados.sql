@@ -1,6 +1,6 @@
 SELECT * FROM treino;
 
-SELECT * FROM associados;
+SELECT * FROM associado;
 
 SELECT * FROM esporte;
 
