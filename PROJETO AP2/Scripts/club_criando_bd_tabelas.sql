@@ -36,7 +36,7 @@ CREATE TABLE associado (
     email VARCHAR(30),
     data_de_associacao TIMESTAMP,
     times_id INT NOT NULL,
-    nome_completo VARCHAR(50),
+    nome_completo VARCHAR(35),
     
     CONSTRAINT pk_id PRIMARY KEY(id),
     
