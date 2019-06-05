@@ -45,7 +45,6 @@ CREATE TABLE associado (
     REFERENCES times(cod_time)
 ) DEFAULT CHARSET = utf8mb4;
 
-    
 CREATE TABLE associado_telefone (
 	id INT NOT NULL,
     telefone VARCHAR(30),
