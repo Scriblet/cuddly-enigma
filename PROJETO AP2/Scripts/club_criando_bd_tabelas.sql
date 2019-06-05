@@ -36,6 +36,7 @@ CREATE TABLE associado (
     email VARCHAR(30),
     data_de_associacao TIMESTAMP,
     times_id INT NOT NULL,
+    nome_completo VARCHAR(50),
     
     CONSTRAINT pk_id PRIMARY KEY(id),
     
@@ -43,6 +44,7 @@ CREATE TABLE associado (
     FOREIGN KEY(times_id) 
     REFERENCES times(cod_time)
 ) DEFAULT CHARSET = utf8mb4;
+
     
 CREATE TABLE associado_telefone (
 	id INT NOT NULL,
@@ -190,7 +192,7 @@ CREATE TABLE escala_dias_livres(
 ) DEFAULT CHARSET = utf8mb4;
 
 
-CREATE TABLE associados_part_camp (
+CREATE TABLE associados_part_camp(
     id INT NOT NULL,
     codigo_camp INT NOT NULL,
     
@@ -199,8 +201,8 @@ CREATE TABLE associados_part_camp (
     
     CONSTRAINT fk_asso_camp
     FOREIGN KEY(id) 
-    REFERENCES associado(id)
-	   
+    REFERENCES associado(id),
+    
     CONSTRAINT fk_asso_camp
     FOREIGN KEY (codigo_camp)
     REFERENCES campeonato(cod_camp)
@@ -219,23 +221,3 @@ CREATE TABLE jogos (
     FOREIGN KEY(cod_camp_id) 
     REFERENCES campeonato(cod_camp)
 ) DEFAULT CHARSET = utf8mb4;
-
-CREATE TABLE atualizacao_de_associados_camp(
-	id INT NOT NULL,
-	codigo_campeonato INT NOT NULL,
-	nome VARCHAR(15),
-	sobrenome VARCHAR(30),
-	data_de_atualizacao DATE,
-    
-	CONSTRAINT pk_historico_alunos
-	PRIMARY KEY(id, codigo_campeonato),
-
-	CONSTRAINT fk_historico_camp
-	FOREIGN KEY (codigo_campeonato)
-        REFERENCES campeonato(cod_camp),
-
-	CONSTRAINT fk_historico_asso
-	FOREIGN KEY (nome, sobrenome)
-        REFERENCES associado(nome, sobrenome)
-) DEFAULT CHARSET = utf8mb4;
-
